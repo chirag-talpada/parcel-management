@@ -1,0 +1,14 @@
+.packages-sidebar{
+   overflow: auto;
+   padding-bottom: 20px;
+   height: 100vh;
+}
+
+.pkg-card{
+    padding: 15px;
+    background: linear-gradient(45deg,#000428,#004e92);
+    margin: 8px;
+    color: #fff;
+    border-radius: 10px;
+    cursor: grab;
+}

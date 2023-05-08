@@ -1,0 +1,45 @@
+.Truck-div{
+    height: 210px;
+    background: lightgray;
+    margin: 5px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items:center;
+    padding-top: 20px;
+}
+
+.truck-img{
+    height: 100%;
+    width: 50%;
+}
+
+.truck-img img{
+    height: auto;
+    width: 40%;
+}
+
+.large img{
+    width: 55%;
+}
+.medium img{
+    width: 50%;
+}
+.small img{
+    width: 45%;
+}
+
+.truck-label{
+    background: lightgreen;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.id-label{
+    margin-bottom: 7px;
+}
+
+.onHoverUp{
+    box-shadow: rgb(50, 50, 93) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.911) 0px 18px 36px -18px inset;
+}
