@@ -1,0 +1,38 @@
+.model{
+    position: absolute;
+    background: rgba(0, 0, 0, 0.795);
+    width: 100vw;
+    height: 100vh;
+    top:0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.data-model{
+    background: #fff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.close-model{
+    font-weight: 700;
+    font-size: 24px;
+    cursor: pointer;
+    
+}
+
+.model-close-panel{
+    text-align: right;
+    margin-bottom: 4px;
+}
+
+.model-content table td{
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.model-content table{
+    border-collapse: collapse;
+}
