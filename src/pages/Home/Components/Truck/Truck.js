@@ -1,21 +1,21 @@
-import React, { useContext,useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Truck.css";
 import tk from "../../../../assets/img/tk.png";
 import { appContext } from "../../../../Context/AppContext";
 import { convertToKg } from "../../../../utils/helper";
 import toast, { Toaster } from "react-hot-toast";
 import DataModel from "../DataModel/DataModel";
+import ProgressBar from "../ProgressBar/ProgressBar";
+import { CAPACITY } from "../../../../utils/constant";
 
 const Truck = ({ label }) => {
   const { updatePackages, packages, truckData, updateTruckData } =
     useContext(appContext);
 
-    const [model,setModel] =useState({isOpen:false,data:[]});
+  const [model, setModel] = useState({ isOpen: false, data: [] });
 
   const handleOnDragOver = (e) => {
     e.preventDefault();
-    console.log(e.target);
-
     e.target.closest(".Truck-div").classList.add("onHoverUp");
   };
 
@@ -34,7 +34,7 @@ const Truck = ({ label }) => {
 
     if (label === "large") {
       if (convertToKg(storePackage.gram) <= 10) {
-        toast.error(`Package too small (must be greater than 10 kg)`)
+        toast.error(`Package too small (must be greater than 10 kg)`);
         return false;
       }
     }
@@ -46,14 +46,14 @@ const Truck = ({ label }) => {
           convertToKg(storePackage.gram) <= 10
         )
       ) {
-        toast.error(`Package can't be placed (package>=1 && package<=10 )`)
+        toast.error(`Package can't be placed (package>=1 && package<=10 )`);
         return false;
       }
     }
 
     if (label === "small") {
       if (!(convertToKg(storePackage.gram) < 1)) {
-        toast.error(`Package size is too large (must be less than 1 kg)`)
+        toast.error(`Package size is too large (must be less than 1 kg)`);
         return false;
       }
     }
@@ -63,29 +63,44 @@ const Truck = ({ label }) => {
 
     updatePackages(filterPackages);
     updateTruckData(oldTruckData);
-    toast.success(`Package Added to ${label} truck`)
+    toast.success(`Package Added to ${label} truck`);
   };
 
-  const displayData=(label)=>{
-    console.log(truckData[label]);
-    setModel({isOpen:true,data:truckData[label]});
-  }
+  const displayData = (label) => {
+    setModel({ isOpen: true, data: truckData[label] });
+  };
+  
+  const [progressBar, setProgressBar] = useState({percentage:0,capacity:0,exists:0});
+
+  useEffect(() => {
+    let total = truckData?.[label]?.reduce(
+      (acc, curr) => acc + Number(curr.gram),
+      0
+    );
+    let capacity = CAPACITY[label.toUpperCase()];
+
+    
+    let per = (total * 100) / capacity;
+    setProgressBar({percentage:per,capacity,exists:total})
+    
+  }, [label, truckData]);
 
   return (
     <>
-    { model.isOpen && <DataModel setModel={setModel} model={model} />}
-    <Toaster/>
+      {model.isOpen && <DataModel setModel={setModel} model={model} />}
+      <Toaster />
       <div
         className={"Truck-div " + label}
         onDrop={(e) => handleOnDrop(e, label)}
         onDragLeave={handleOnDragLeave}
         onDragOver={handleOnDragOver}
-        onClick={()=>displayData(label)}
+        onClick={() => displayData(label)}
       >
         <div className="truck-label">{label}</div>
         <div className="truck-img">
           <img src={tk} alt="truck" />
         </div>
+        <ProgressBar progressBar={progressBar} />
       </div>
     </>
   );

@@ -11,6 +11,9 @@ const AppState = ({children}) => {
         medium:[],
         small:[]
     };
+
+    
+
     const [packages,setPackages]=useState(packages_Data);
     const [truckData,setTruckData]=useState(initialtruckData);
 
