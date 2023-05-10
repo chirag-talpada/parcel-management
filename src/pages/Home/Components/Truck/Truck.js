@@ -57,8 +57,21 @@ const Truck = ({ label }) => {
         return false;
       }
     }
-
+    
     const oldTruckData = { ...truckData };
+    
+    if(oldTruckData[label]){
+      let total = oldTruckData[label].reduce(
+        (acc, curr) => acc + Number(curr.gram),
+        0
+      );
+
+      if( Number(storePackage.gram) + total>CAPACITY[label.toUpperCase()]){
+        toast.error(`Capacity exceeded for ${label} container`)
+        return false;
+      }
+    }
+
     oldTruckData[label].push(storePackage);
 
     updatePackages(filterPackages);

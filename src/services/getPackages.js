@@ -26,4 +26,5 @@ export const packages_Data = [
   { id: 26, gram: "13000" },
   { id: 27, gram: "14500" },
   { id: 28, gram: "15000" },
+  { id: 29, gram: "15500" },
 ];
