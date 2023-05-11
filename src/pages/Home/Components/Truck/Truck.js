@@ -9,7 +9,7 @@ import { OnPackageDrop } from "./EventMethods";
 
 const Truck = ({ label }) => {
   const app = useContext(appContext);
-  const [model, setModel] = useState({ isOpen: false, data: [] });
+  const [model, setModel] = useState({ isOpen: false,label:'' });
   const [cssClass,setCssClass]=useState('');
 
 
@@ -23,7 +23,7 @@ const Truck = ({ label }) => {
   };
 
   const displayData = (label) => {
-    setModel({ isOpen: true, data: app.truckData[label] });
+    setModel({ isOpen: true,label });
   };
 
  

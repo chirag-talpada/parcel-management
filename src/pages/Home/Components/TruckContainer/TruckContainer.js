@@ -12,8 +12,8 @@ const TruckContainer = () => {
 
   return (
     <div className="trucks-container">
-      {list.map((type) => {
-        return <Truck label={type.label} />;
+      {list.map((type,i) => {
+        return <Truck key={i} label={type.label} />;
       })}
     </div>
   );
