@@ -2,14 +2,15 @@ import React from 'react'
 import { appContext } from "./AppContext";
 import { packages_Data } from "../services/getPackages";
 import { useState } from "react";
+import { TRUCK_TYPE } from '../utils/constant';
 
 
 const AppState = ({children}) => {
 
     const initialtruckData={
-        large:[],
-        medium:[],
-        small:[]
+        [TRUCK_TYPE.LARGE]:[],
+        [TRUCK_TYPE.MEDIUM]:[],
+        [TRUCK_TYPE.SMALL]:[]
     };
 
     

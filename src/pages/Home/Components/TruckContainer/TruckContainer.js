@@ -1,15 +1,22 @@
-import React from 'react'
-import './TruckContainer.css'
-import Truck from '../Truck/Truck'
+import React from "react";
+import "./TruckContainer.css";
+import Truck from "../Truck/Truck";
+import { TRUCK_TYPE } from "../../../../utils/constant";
 
 const TruckContainer = () => {
-  return (
-    <div className='trucks-container'>
-        <Truck label='large'/>
-        <Truck label='medium' />
-        <Truck label='small'/>
-    </div>
-  )
-}
+  const list = [
+    { label: TRUCK_TYPE.LARGE },
+    { label: TRUCK_TYPE.MEDIUM },
+    { label: TRUCK_TYPE.SMALL },
+  ];
 
-export default TruckContainer
+  return (
+    <div className="trucks-container">
+      {list.map((type) => {
+        return <Truck label={type.label} />;
+      })}
+    </div>
+  );
+};
+
+export default TruckContainer;

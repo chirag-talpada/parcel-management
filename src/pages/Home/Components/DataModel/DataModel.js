@@ -18,8 +18,8 @@ const DataModel = ({setModel,model}) => {
               </tr>
             </thead>
             <tbody>
-                {model.data.map((data)=>{
-                    return (<tr>
+                {model.data.map((data,i)=>{
+                    return (<tr key={i}>
                         <td>{data.id}</td>
                         <td>{ convertToKg(data.gram) }</td>
                     </tr>)
